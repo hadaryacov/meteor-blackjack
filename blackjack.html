@@ -1,0 +1,86 @@
+<head>
+  <title>blackjack</title>
+</head>
+
+<body>
+  	{{> cards}}
+	
+	<div class="section">
+		{{> user}}
+	</div>
+
+	<div class="section">
+		{{> computer}}
+	</div>
+	
+	
+
+	<!-- {{> scores}} -->
+</body>
+
+<template name="user">
+	<div class="score">{{score}}</div>
+	{{> userCards}}
+</template>
+
+<template name="computer">
+	<div class="score">{{score}}</div>
+	{{> compCards}}
+</template>
+
+<template name="userCards">
+	<div class="userCards">
+		{{#each userCards}}
+			{{> card}}
+		{{/each}}
+	</div>
+</template>
+
+<template name="compCards">
+	<div class="compCards">
+		{{compScore}}
+		{{#each compCards}}
+			{{> card}}
+		{{/each}}
+	</div>
+</template>
+
+<template name="scores">
+	<div class="scores">
+		<div class="user">user score: 0</div>
+		<div class="computer">computer score: 0</div>
+	</div>
+</template>
+
+<template name="cards">
+	<div class="pack">
+		<div class="cards">
+		    {{#each cards}}
+		  		{{> card}}
+		    {{/each}}
+	    </div>
+	    <button class="deal">deal</button>
+	</div><!--pack-->
+</template>
+
+<template name="card">
+	<div class="card {{type.name}} hide" data-id="{{id}}">
+		<div class="front">
+			<div class="corner top">
+				<span class="number">{{number}}</span>
+				<span>{{type.sign}}</span>
+			</div>
+
+			{{#each signs}}
+				<span class="suit {{this}}">{{../type.sign}}</span>
+			{{/each}}
+			
+			<div class="corner bottom">
+				<span class="number">{{number}}</span>
+				<span>{{type.sign}}</span>
+			</div>
+		</div>
+		<div class="back">
+		</div>
+	</div>
+</template>
